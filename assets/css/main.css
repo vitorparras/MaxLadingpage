@@ -1,3 +1,4 @@
+
 /**
 * Template Name: KnightOne
 * Template URL: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/
@@ -6,50 +7,61 @@
 * License: https://bootstrapmade.com/license/
 */
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Import Amalfi Coast font - você precisará adicionar este arquivo */
+@font-face {
+  font-family: 'Amalfi Coast';
+  src: url('path-to-amalfi-coast-font.woff2') format('woff2'),
+       url('path-to-amalfi-coast-font.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*--------------------------------------------------------------
 # Font & Color Variables
 # Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Amalfi Coast", "Montserrat", sans-serif;
+  --nav-font: "Montserrat", sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+/* Global Colors - Paleta refinada para máxima legibilidade */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #282828; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #009961; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #F5F1ED; /* Bege muito claro - melhor contraste */
+  --default-color: #2C2C2C; /* Cinza muito escuro para máxima legibilidade */
+  --heading-color: #8B6914; /* Dourado mais escuro para melhor contraste */
+  --accent-color: #9A7B0A; /* Dourado escuro - cor de destaque mais legível */
+  --surface-color: #FFFFFF; /* Branco puro para elementos de superfície */
+  --contrast-color: #FFFFFF; /* Branco puro para contraste */
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+/* Nav Menu Colors */
 :root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #009961; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #009961; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #FFFFFF;
+  --nav-hover-color: #D4AF37; /* Dourado mais claro para hover - melhor visibilidade */
+  --nav-mobile-background-color: #F5F1ED; /* Bege refinado */
+  --nav-dropdown-background-color: #FFFFFF;
+  --nav-dropdown-color: #2C2C2C; /* Texto mais escuro para melhor legibilidade */
+  --nav-dropdown-hover-color: #8B6914; /* Dourado escuro para hover */
 }
 
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
+/* Color Presets */
 .light-background {
-  --background-color: #f9f9f9;
-  --surface-color: #ffffff;
+  --background-color: #FEFCF9; /* Bege quase branco para máximo contraste */
+  --surface-color: #FFFFFF;
 }
 
 .dark-background {
-  --background-color: #060606;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #252525;
-  --contrast-color: #ffffff;
+  --background-color: #1A1A1A; /* Preto suave para contraste máximo */
+  --default-color: #F5F1ED; /* Bege claro para texto em fundo escuro */
+  --heading-color: #D4AF37; /* Dourado mais claro para fundo escuro */
+  --surface-color: #2C2C2C;
+  --contrast-color: #FFFFFF;
 }
 
 /* Smooth scroll */
@@ -87,8 +99,7 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* Pulsating Play Button
-------------------------------*/
+/* Pulsating Play Button */
 .pulsating-play-btn {
   width: 94px;
   height: 94px;
@@ -114,7 +125,7 @@ h6 {
   border: 5px solid color-mix(in srgb, var(--accent-color), transparent 30%);
   top: -15%;
   left: -15%;
-  background: rgba(198, 16, 0, 0);
+  background: rgba(176, 141, 87, 0);
 }
 
 .pulsating-play-btn:after {
@@ -166,11 +177,10 @@ h6 {
   }
 }
 
-/* PHP Email Form Messages
-------------------------------*/
+/* PHP Email Form Messages */
 .php-email-form .error-message {
   display: none;
-  background: #df1529;
+  background: #D63384; /* Rosa suave para erro */
   color: #ffffff;
   text-align: left;
   padding: 15px;
@@ -181,7 +191,7 @@ h6 {
 .php-email-form .sent-message {
   display: none;
   color: #ffffff;
-  background: #059652;
+  background: #198754; /* Verde suave para sucesso */
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -222,7 +232,7 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(0, 0, 0, 0);
+  --background-color: rgba(139, 105, 20, 0.98); /* Dourado mais escuro e menos transparência */
   --default-color: #ffffff;
   --heading-color: #ffffff;
   color: var(--default-color);
@@ -230,7 +240,7 @@ h6 {
   padding: 10px 0;
   transition: all 0.5s;
   z-index: 997;
-  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
 .header .logo {
@@ -286,10 +296,9 @@ h6 {
   }
 }
 
-/* Global Header on Scroll
-------------------------------*/
+/* Global Header on Scroll */
 .scrolled .header {
-  --background-color: rgba(40, 40, 40, 0.9);
+  --background-color: rgba(139, 105, 20, 0.95);
 }
 
 /*--------------------------------------------------------------
@@ -518,12 +527,12 @@ h6 {
   }
 
   .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
+    background-color: rgba(176, 141, 87, 0.1);
   }
 
   .navmenu .dropdown>.dropdown-active {
     display: block;
-    background-color: rgba(33, 37, 41, 0.03);
+    background-color: rgba(176, 141, 87, 0.03);
   }
 
   .mobile-nav-active {
@@ -544,7 +553,7 @@ h6 {
     position: fixed;
     overflow: hidden;
     inset: 0;
-    background: rgba(33, 37, 41, 0.8);
+    background: rgba(74, 74, 74, 0.8);
     transition: 0.3s;
   }
 
@@ -792,7 +801,10 @@ section,
 
 .section-title p {
   margin-bottom: 0;
-  color: color-mix(in srgb, var(--default-color) 90%, white 50%);
+  color: var(--default-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 /*--------------------------------------------------------------
@@ -838,9 +850,11 @@ section,
 }
 
 .hero p {
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: var(--default-color);
   margin: 10px 0 20px 0;
   font-size: 24px;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 768px) {
@@ -879,15 +893,16 @@ section,
   background: var(--accent-color);
   color: var(--contrast-color);
   font-family: var(--heading-font);
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 17px;
   letter-spacing: 1px;
-  padding: 10px 28px;
+  padding: 12px 32px;
   border-radius: 50px;
   transition: 0.3s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 15px rgba(139, 105, 20, 0.3);
 }
 
 .about .read-more i {
@@ -910,7 +925,7 @@ section,
 --------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
-  box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 90px 0px rgba(139, 105, 20, 0.15);
   padding: 60px 30px;
   transition: all ease-in-out 0.3s;
   border-radius: 18px;
@@ -1256,7 +1271,7 @@ section,
 --------------------------------------------------------------*/
 .pricing .pricing-item {
   background-color: var(--surface-color);
-  box-shadow: 0px 5px 90px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 90px rgba(176, 141, 87, 0.1);
   padding: 40px 20px;
   text-align: center;
   border-radius: 8px;
@@ -1374,7 +1389,7 @@ section,
   position: relative;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 25px 0px rgba(176, 141, 87, 0.1);
   overflow: hidden;
 }
 
@@ -1458,7 +1473,7 @@ section,
 --------------------------------------------------------------*/
 .recent-posts article {
   background: var(--surface-color);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1);
   padding: 30px;
   height: 100%;
   border-radius: 10px;
@@ -1556,13 +1571,14 @@ section,
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email],
 .contact .php-email-form textarea {
-  font-size: 14px;
-  padding: 10px 15px;
+  font-size: 15px;
+  padding: 12px 18px;
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 8px;
   color: var(--default-color);
   background-color: var(--surface-color);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 70%);
+  font-weight: 500;
 }
 
 .contact .php-email-form input[type=text]:focus,
@@ -1610,7 +1626,7 @@ section,
 .portfolio-details .swiper-button-prev:after,
 .portfolio-details .swiper-button-next:after {
   color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(176, 141, 87, 0.15);
   font-size: 24px;
   border-radius: 50%;
   width: 48px;
@@ -1623,7 +1639,7 @@ section,
 
 .portfolio-details .swiper-button-prev:hover:after,
 .portfolio-details .swiper-button-next:hover:after {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(176, 141, 87, 0.3);
 }
 
 @media (max-width: 575px) {
@@ -1843,7 +1859,7 @@ section,
 --------------------------------------------------------------*/
 .blog-posts article {
   background-color: var(--surface-color);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1);
   padding: 30px;
   height: 100%;
   border-radius: 10px;
@@ -1947,7 +1963,7 @@ section,
 .blog-details .article {
   background-color: var(--surface-color);
   padding: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1);
 }
 
 .blog-details .post-img {
@@ -2160,7 +2176,7 @@ section,
   background-color: var(--surface-color);
   margin-top: 30px;
   padding: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1);
 }
 
 .comment-form form h4 {
@@ -2237,7 +2253,7 @@ section,
   background-color: var(--surface-color);
   padding: 30px;
   margin: 60px 0 30px 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1);
 }
 
 .widget-title {
