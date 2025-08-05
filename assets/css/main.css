@@ -1019,17 +1019,36 @@ section,
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 40px;
-  border-radius: 50px;
-  transition: 0.5s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 30px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
   margin: 10px;
-  background: var(--accent-color);
-  color: var(--contrast-color);
+  background: #25D366;
+  color: #ffffff;
+  border: 2px solid #25D366;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+  text-decoration: none;
 }
 
 .call-to-action .cta-btn:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  background: #128C7E;
+  color: #ffffff;
+  border-color: #128C7E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
+}
+
+.call-to-action .cta-btn i {
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.call-to-action .cta-btn:hover i {
+  transform: scale(1.05);
 }
 
 /*--------------------------------------------------------------
