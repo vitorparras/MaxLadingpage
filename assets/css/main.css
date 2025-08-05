@@ -876,33 +876,42 @@ section,
 }
 
 .about .read-more {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  font-family: var(--heading-font);
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: 1px;
-  padding: 12px 32px;
-  border-radius: 50px;
-  transition: 0.3s;
+  background: #25D366;
+  color: #ffffff;
+  font-family: var(--nav-font);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  padding: 10px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  border: 2px solid #25D366;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
 }
 
 .about .read-more i {
-  font-size: 18px;
-  margin-left: 5px;
+  font-size: 15px;
   line-height: 0;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  color: #ffffff;
 }
 
 .about .read-more:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  background: #128C7E;
+  color: #ffffff;
+  border-color: #128C7E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
 }
 
 .about .read-more:hover i {
-  transform: translate(5px, 0);
+  transform: scale(1.05);
+  color: #ffffff;
 }
 
 /*--------------------------------------------------------------
