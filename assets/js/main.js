@@ -173,6 +173,8 @@
         new Swiper(swiperElement, config);
       }
     });
+
+    
   }
 
   window.addEventListener("load", initSwiper);
