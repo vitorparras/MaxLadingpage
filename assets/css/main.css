@@ -35,7 +35,109 @@
   --nav-dropdown-hover-color: #B08D57;
 }
 
-/* Elegant background system with smooth transitions */
+/* Sistema de fundos harmônicos e elegantes - Max Beauty Center */
+
+/* Fundo Principal - Branco Puro com ornamentação sutil */
+.primary-background {
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+  background: #ffffff;
+  position: relative;
+}
+
+.primary-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(176, 141, 87, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(176, 141, 87, 0.006) 1px, transparent 1px),
+    linear-gradient(45deg, transparent 48%, rgba(176, 141, 87, 0.003) 50%, transparent 52%);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 75px, 25px 25px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fundo Dourado Suave - Elegante e sofisticado */
+.golden-background {
+  --background-color: #faf8f5;
+  --surface-color: #ffffff;
+  background: linear-gradient(135deg, #faf8f5 0%, #f6f3ee 50%, #f8f5f0 100%);
+  position: relative;
+}
+
+.golden-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 25% 25%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+    radial-gradient(ellipse at 75% 75%, rgba(176, 141, 87, 0.015) 0%, transparent 60%),
+    linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.008) 50%, transparent 70%);
+  background-size: 180px 120px, 220px 140px, 300px 180px;
+  background-position: 0 0, 90px 70px, 45px 90px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fundo Neutro Caloroso - Transição suave */
+.warm-neutral-background {
+  --background-color: #fbfaf9;
+  --surface-color: #ffffff;
+  background: linear-gradient(180deg, #fbfaf9 0%, #f9f8f6 50%, #fafaf8 100%);
+  position: relative;
+}
+
+.warm-neutral-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 40% 20%, rgba(176, 141, 87, 0.012) 0%, transparent 65%),
+    radial-gradient(circle at 60% 80%, rgba(176, 141, 87, 0.010) 0%, transparent 55%),
+    linear-gradient(60deg, transparent 40%, rgba(176, 141, 87, 0.005) 55%, transparent 70%);
+  background-size: 160px 160px, 200px 200px, 280px 160px;
+  background-position: 0 0, 80px 80px, 40px 120px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fundo Acentuado Suave - Destaque elegante */
+.soft-accent-background {
+  --background-color: #f7f4f0;
+  --surface-color: #ffffff;
+  background: linear-gradient(145deg, #f7f4f0 0%, #f5f2ed 30%, #f6f3ef 70%, #f8f5f1 100%);
+  position: relative;
+}
+
+.soft-accent-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 30% 40%, rgba(176, 141, 87, 0.025) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(176, 141, 87, 0.018) 0%, transparent 45%),
+    linear-gradient(135deg, transparent 35%, rgba(176, 141, 87, 0.010) 50%, transparent 65%);
+  background-size: 140px 100px, 180px 120px, 250px 150px;
+  background-position: 0 0, 70px 50px, 35px 75px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Classes de compatibilidade - mantendo funcionalidade existente */
 .light-background {
   --background-color: #ffffff;
   --surface-color: #ffffff;
@@ -51,18 +153,18 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(176, 141, 87, 0.015) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(176, 141, 87, 0.01) 1px, transparent 1px);
-  background-size: 80px 80px, 120px 120px;
-  background-position: 0 0, 40px 60px;
+    radial-gradient(circle at 20% 30%, rgba(176, 141, 87, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(176, 141, 87, 0.006) 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px;
+  background-position: 0 0, 50px 75px;
   pointer-events: none;
   z-index: 0;
 }
 
 .accent-background {
-  --background-color: #f9f7f4;
+  --background-color: #f7f4f0;
   --surface-color: #ffffff;
-  background: linear-gradient(135deg, #f9f7f4 0%, #f5f2ee 100%);
+  background: linear-gradient(135deg, #f7f4f0 0%, #f5f2ed 100%);
   position: relative;
 }
 
@@ -82,9 +184,9 @@
 }
 
 .neutral-background {
-  --background-color: #fafafa;
+  --background-color: #fbfaf9;
   --surface-color: #ffffff;
-  background: linear-gradient(135deg, #fafafa 0%, #f7f7f7 100%);
+  background: linear-gradient(135deg, #fbfaf9 0%, #f9f8f6 100%);
   position: relative;
 }
 
@@ -832,31 +934,107 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Section Transitions
+# Section Transitions - Sistema Elegante de Transições
 --------------------------------------------------------------*/
+
+/* Transição suave entre seções com gradiente ornamental */
 .section-transition {
-  height: 100px;
+  height: 80px;
   background: linear-gradient(to bottom, 
-    rgba(var(--background-color-rgb, 255, 255, 255), 1) 0%,
-    rgba(var(--background-color-rgb, 255, 255, 255), 0.8) 50%,
-    rgba(var(--background-color-rgb, 255, 255, 255), 0) 100%);
+    rgba(255, 255, 255, 1) 0%,
+    rgba(250, 248, 245, 0.9) 25%,
+    rgba(247, 244, 240, 0.7) 50%,
+    rgba(250, 248, 245, 0.9) 75%,
+    rgba(255, 255, 255, 1) 100%);
   position: relative;
-  margin: -50px 0;
+  margin: 0;
   z-index: 2;
+  overflow: hidden;
 }
 
-/* Elegant divider between sections */
+.section-transition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 50%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+    radial-gradient(circle at 75% 50%, rgba(176, 141, 87, 0.015) 0%, transparent 60%);
+  background-size: 120px 80px, 150px 80px;
+  background-position: 0 0, 60px 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Divisor elegante entre seções - versão refinada */
 .section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(176, 141, 87, 0.08) 15%, 
+    rgba(176, 141, 87, 0.25) 50%, 
+    rgba(176, 141, 87, 0.08) 85%, 
+    transparent 100%);
+  margin: 40px auto;
+  width: 60%;
+  max-width: 400px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(176, 141, 87, 0.4);
+  border-radius: 50%;
+  box-shadow: 
+    -20px 0 0 -1px rgba(176, 141, 87, 0.2),
+    20px 0 0 -1px rgba(176, 141, 87, 0.2);
+}
+
+/* Ornamentos decorativos para transições especiais */
+.ornamental-divider {
+  position: relative;
+  height: 60px;
+  background: transparent;
+  margin: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ornamental-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
   height: 1px;
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgba(176, 141, 87, 0.1) 20%, 
-    rgba(176, 141, 87, 0.2) 50%, 
-    rgba(176, 141, 87, 0.1) 80%, 
+    rgba(176, 141, 87, 0.3) 50%, 
     transparent 100%);
-  margin: 0 auto;
-  width: 80%;
-  max-width: 600px;
+}
+
+.ornamental-divider::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(176, 141, 87, 0.6);
+  font-size: 14px;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 50%;
 }
 
 /*--------------------------------------------------------------
@@ -976,10 +1154,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# About Section
+# About Section - Fundo Principal Branco
 --------------------------------------------------------------*/
 .about.section {
-  /* Utiliza a classe light-background definida globalmente */
+  /* Aplicando fundo principal - branco puro com ornamentação sutil */
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+  background: #ffffff;
+  position: relative;
+}
+
+.about.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(176, 141, 87, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(176, 141, 87, 0.006) 1px, transparent 1px),
+    linear-gradient(45deg, transparent 48%, rgba(176, 141, 87, 0.003) 50%, transparent 52%);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 75px, 25px 25px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .about ul {
@@ -1039,10 +1238,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Services Section
+# Services Section - Fundo Dourado Suave
 --------------------------------------------------------------*/
 .services.section {
-  /* Utiliza a classe accent-background definida globalmente */
+  /* Aplicando fundo dourado suave - elegante e sofisticado */
+  --background-color: #faf8f5;
+  --surface-color: #ffffff;
+  background: linear-gradient(135deg, #faf8f5 0%, #f6f3ee 50%, #f8f5f0 100%);
+  position: relative;
+}
+
+.services.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 25% 25%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+    radial-gradient(ellipse at 75% 75%, rgba(176, 141, 87, 0.015) 0%, transparent 60%),
+    linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.008) 50%, transparent 70%);
+  background-size: 180px 120px, 220px 140px, 300px 180px;
+  background-position: 0 0, 90px 70px, 45px 90px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .services .service-item {
@@ -1179,10 +1399,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Features Section
+# Features Section - Fundo Neutro Caloroso
 --------------------------------------------------------------*/
 .features.section {
-  /* Utiliza a classe light-background definida globalmente */
+  /* Aplicando fundo neutro caloroso - transição suave */
+  --background-color: #fbfaf9;
+  --surface-color: #ffffff;
+  background: linear-gradient(180deg, #fbfaf9 0%, #f9f8f6 50%, #fafaf8 100%);
+  position: relative;
+}
+
+.features.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 40% 20%, rgba(176, 141, 87, 0.012) 0%, transparent 65%),
+    radial-gradient(circle at 60% 80%, rgba(176, 141, 87, 0.010) 0%, transparent 55%),
+    linear-gradient(60deg, transparent 40%, rgba(176, 141, 87, 0.005) 55%, transparent 70%);
+  background-size: 160px 160px, 200px 200px, 280px 160px;
+  background-position: 0 0, 80px 80px, 40px 120px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .features .features-image {
@@ -1220,12 +1461,33 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Clients Section - Dual Carousel Professional
+# Clients Section - Fundo Acentuado Suave
 --------------------------------------------------------------*/
 .clients.section {
   padding: 120px 0;
-  /* Utiliza a classe neutral-background definida globalmente */
+  /* Aplicando fundo acentuado suave - destaque elegante */
+  --background-color: #f7f4f0;
+  --surface-color: #ffffff;
+  background: linear-gradient(145deg, #f7f4f0 0%, #f5f2ed 30%, #f6f3ef 70%, #f8f5f1 100%);
+  position: relative;
   overflow: hidden;
+}
+
+.clients.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 30% 40%, rgba(176, 141, 87, 0.025) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(176, 141, 87, 0.018) 0%, transparent 45%),
+    linear-gradient(135deg, transparent 35%, rgba(176, 141, 87, 0.010) 50%, transparent 65%);
+  background-size: 140px 100px, 180px 120px, 250px 150px;
+  background-position: 0 0, 70px 50px, 35px 75px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Full width carousel container */
@@ -1606,10 +1868,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Portfolio Section
+# Portfolio Section - Fundo Principal Branco (Alternância)
 --------------------------------------------------------------*/
 .portfolio.section {
-  /* Utiliza a classe accent-background definida globalmente */
+  /* Retornando ao fundo principal - branco puro com ornamentação sutil */
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+  background: #ffffff;
+  position: relative;
+}
+
+.portfolio.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(176, 141, 87, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(176, 141, 87, 0.006) 1px, transparent 1px),
+    linear-gradient(45deg, transparent 48%, rgba(176, 141, 87, 0.003) 50%, transparent 52%);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 75px, 25px 25px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .portfolio .portfolio-filters {
@@ -1798,10 +2081,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Faq Section
+# Faq Section - Fundo Dourado Suave (Alternância)
 --------------------------------------------------------------*/
 .faq.section {
-  /* Utiliza a classe light-background definida globalmente */
+  /* Aplicando fundo dourado suave - elegante e sofisticado */
+  --background-color: #faf8f5;
+  --surface-color: #ffffff;
+  background: linear-gradient(135deg, #faf8f5 0%, #f6f3ee 50%, #f8f5f0 100%);
+  position: relative;
+}
+
+.faq.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 25% 25%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+    radial-gradient(ellipse at 75% 75%, rgba(176, 141, 87, 0.015) 0%, transparent 60%),
+    linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.008) 50%, transparent 70%);
+  background-size: 180px 120px, 220px 140px, 300px 180px;
+  background-position: 0 0, 90px 70px, 45px 90px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .faq .content h3 {
@@ -1902,10 +2206,31 @@ section > * {
 }
 
 /*--------------------------------------------------------------
-# Contact Section
+# Contact Section - Fundo Neutro Caloroso (Fechamento)
 --------------------------------------------------------------*/
 .contact.section {
-  /* Utiliza a classe accent-background definida globalmente */
+  /* Aplicando fundo neutro caloroso - transição suave para fechamento */
+  --background-color: #fbfaf9;
+  --surface-color: #ffffff;
+  background: linear-gradient(180deg, #fbfaf9 0%, #f9f8f6 50%, #fafaf8 100%);
+  position: relative;
+}
+
+.contact.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 40% 20%, rgba(176, 141, 87, 0.012) 0%, transparent 65%),
+    radial-gradient(circle at 60% 80%, rgba(176, 141, 87, 0.010) 0%, transparent 55%),
+    linear-gradient(60deg, transparent 40%, rgba(176, 141, 87, 0.005) 55%, transparent 70%);
+  background-size: 160px 160px, 200px 200px, 280px 160px;
+  background-position: 0 0, 80px 80px, 40px 120px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .contact .info-item+.info-item {
