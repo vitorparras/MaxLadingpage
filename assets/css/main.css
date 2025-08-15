@@ -35,9 +35,72 @@
   --nav-dropdown-hover-color: #B08D57;
 }
 
+/* Elegant background system with smooth transitions */
 .light-background {
-  --background-color: #EAE2DA;
+  --background-color: #ffffff;
   --surface-color: #ffffff;
+  background: #ffffff;
+  position: relative;
+}
+
+.light-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(176, 141, 87, 0.015) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(176, 141, 87, 0.01) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.accent-background {
+  --background-color: #f9f7f4;
+  --surface-color: #ffffff;
+  background: linear-gradient(135deg, #f9f7f4 0%, #f5f2ee 100%);
+  position: relative;
+}
+
+.accent-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 30% 70%, rgba(176, 141, 87, 0.025) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 40%, rgba(176, 141, 87, 0.008) 60%, transparent 80%);
+  background-size: 150px 150px, 300px 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.neutral-background {
+  --background-color: #fafafa;
+  --surface-color: #ffffff;
+  background: linear-gradient(135deg, #fafafa 0%, #f7f7f7 100%);
+  position: relative;
+}
+
+.neutral-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 60% 40%, rgba(176, 141, 87, 0.012) 0%, transparent 60%),
+    linear-gradient(120deg, transparent 50%, rgba(176, 141, 87, 0.006) 70%, transparent 90%);
+  background-size: 200px 120px, 400px 250px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .dark-background {
@@ -751,6 +814,14 @@ section,
   padding: 60px 0;
   scroll-margin-top: 72px;
   overflow: clip;
+  position: relative;
+}
+
+/* Subtle ornamental patterns for sections - aplicado apenas onde necessário via classes específicas */
+
+section > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 1199px) {
@@ -758,6 +829,34 @@ section,
   .section {
     scroll-margin-top: 57px;
   }
+}
+
+/*--------------------------------------------------------------
+# Section Transitions
+--------------------------------------------------------------*/
+.section-transition {
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    rgba(var(--background-color-rgb, 255, 255, 255), 1) 0%,
+    rgba(var(--background-color-rgb, 255, 255, 255), 0.8) 50%,
+    rgba(var(--background-color-rgb, 255, 255, 255), 0) 100%);
+  position: relative;
+  margin: -50px 0;
+  z-index: 2;
+}
+
+/* Elegant divider between sections */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(176, 141, 87, 0.1) 20%, 
+    rgba(176, 141, 87, 0.2) 50%, 
+    rgba(176, 141, 87, 0.1) 80%, 
+    transparent 100%);
+  margin: 0 auto;
+  width: 80%;
+  max-width: 600px;
 }
 
 /*--------------------------------------------------------------
@@ -856,11 +955,33 @@ section,
     font-size: 18px;
     line-height: 24px;
   }
+  
+  /* Adjust background patterns for mobile */
+  section::before,
+  .light-background::before,
+  .accent-background::before,
+  .neutral-background::before {
+    background-size: 40px 40px, 60px 60px !important;
+    opacity: 0.015 !important;
+  }
+  
+  .clients.section::before {
+    background-size: 200px 150px, 180px 120px, 300px 200px !important;
+  }
+  
+  .section-divider {
+    width: 90%;
+    margin: 20px auto;
+  }
 }
 
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+.about.section {
+  /* Utiliza a classe light-background definida globalmente */
+}
+
 .about ul {
   list-style: none;
   padding: 0;
@@ -920,6 +1041,10 @@ section,
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
+.services.section {
+  /* Utiliza a classe accent-background definida globalmente */
+}
+
 .services .service-item {
   background-color: var(--surface-color);
   padding: 60px 30px;
@@ -1056,6 +1181,10 @@ section,
 /*--------------------------------------------------------------
 # Features Section
 --------------------------------------------------------------*/
+.features.section {
+  /* Utiliza a classe light-background definida globalmente */
+}
+
 .features .features-image {
   position: relative;
   min-height: 400px;
@@ -1095,22 +1224,8 @@ section,
 --------------------------------------------------------------*/
 .clients.section {
   padding: 120px 0;
-  background: linear-gradient(135deg, #fafbfc 0%, #f8f9fb 100%);
-  position: relative;
+  /* Utiliza a classe neutral-background definida globalmente */
   overflow: hidden;
-}
-
-.clients.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(176, 141, 87, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(176, 141, 87, 0.02) 0%, transparent 50%);
-  pointer-events: none;
 }
 
 /* Full width carousel container */
@@ -1149,12 +1264,12 @@ section,
 /* Fade gradient on edges */
 .carousel-row::before {
   left: 0;
-  background: linear-gradient(90deg, #fafbfc 0%, transparent 100%);
+  background: linear-gradient(90deg, #fafafa 0%, transparent 100%);
 }
 
 .carousel-row::after {
   right: 0;
-  background: linear-gradient(270deg, #fafbfc 0%, transparent 100%);
+  background: linear-gradient(270deg, #fafafa 0%, transparent 100%);
 }
 
 /* Carousel track */
@@ -1493,6 +1608,10 @@ section,
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
+.portfolio.section {
+  /* Utiliza a classe accent-background definida globalmente */
+}
+
 .portfolio .portfolio-filters {
   padding: 0;
   margin: 0 auto 20px auto;
@@ -1681,6 +1800,10 @@ section,
 /*--------------------------------------------------------------
 # Faq Section
 --------------------------------------------------------------*/
+.faq.section {
+  /* Utiliza a classe light-background definida globalmente */
+}
+
 .faq .content h3 {
   font-weight: 400;
   font-size: 34px;
@@ -1781,6 +1904,10 @@ section,
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
+.contact.section {
+  /* Utiliza a classe accent-background definida globalmente */
+}
+
 .contact .info-item+.info-item {
   margin-top: 40px;
 }

@@ -211,7 +211,7 @@
       
       // Get direction and reduced speed for elegant movement
       const direction = track.getAttribute('data-direction') === 'left' ? 1 : -1;
-      const speed = 0.4; // Significantly reduced speed for elegant, smooth movement
+      const speed = 0.2; // Significantly reduced speed for elegant, smooth movement
       
       // Set initial position
       track.style.transform = `translateX(${currentTranslate}px)`;
