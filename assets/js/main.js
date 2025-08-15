@@ -178,7 +178,7 @@
   window.addEventListener("load", initSwiper);
 
   /**
-   * Carousel infinite loop with individual hover control
+   * Carousel infinite loop with drag functionality and WhatsApp integration
    */
   function initCarouselInfinite() {
     const carouselTracks = document.querySelectorAll('.carousel-track');
@@ -186,43 +186,235 @@
     if (!carouselTracks.length) return;
 
     carouselTracks.forEach((track, index) => {
-      // Remove drag functionality and focus on smooth infinite scroll
-      track.style.cursor = 'default';
+      // Clone items for true infinite loop - create 4 sets for perfect seamless experience
+      const originalItems = [...track.children];
+      const itemWidth = originalItems[0] ? originalItems[0].offsetWidth + 30 : 280; // Include gap
+      const totalWidth = originalItems.length * itemWidth;
       
-      // Individual hover control for each track
+      // Create 4 complete sets for ultra-smooth infinite scrolling
+      for (let i = 0; i < 3; i++) {
+        originalItems.forEach(item => {
+          const clone = item.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+      
+      // Drag functionality state
+      let isDragging = false;
+      let startPos = 0;
+      let currentTranslate = -totalWidth * 2; // Start at middle set (2nd of 4 sets)
+      let prevTranslate = -totalWidth * 2;
+      let animationId;
+      let isHovered = false;
+      let hasMoved = false;
+      let clickStartTime = 0;
+      
+      // Get direction and reduced speed for elegant movement
+      const direction = track.getAttribute('data-direction') === 'left' ? 1 : -1;
+      const speed = 0.4; // Significantly reduced speed for elegant, smooth movement
+      
+      // Set initial position
+      track.style.transform = `translateX(${currentTranslate}px)`;
+      track.style.cursor = 'grab';
+      
+      // Animation loop for continuous movement with perfect infinite loop
+      function animate() {
+        if (!isDragging && !isHovered) {
+          currentTranslate += direction * speed;
+          
+          // Perfect seamless loop repositioning with 4 sets
+          // Reposition when reaching the boundaries of middle sets
+          if (currentTranslate <= -totalWidth * 3) {
+            // Jump from end of 3rd set to end of 1st set
+            currentTranslate = -totalWidth;
+          } else if (currentTranslate >= -totalWidth) {
+            // Jump from beginning of 1st set to beginning of 3rd set
+            currentTranslate = -totalWidth * 3;
+          }
+          
+          track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+        requestAnimationFrame(animate);
+      }
+      
+      // Start animation
+      requestAnimationFrame(animate);
+      
+      // Hover control - pause animation smoothly
       track.addEventListener('mouseenter', () => {
-        track.style.animationPlayState = 'paused';
+        isHovered = true;
       });
 
       track.addEventListener('mouseleave', () => {
-        track.style.animationPlayState = 'running';
+        if (!isDragging) {
+          isHovered = false;
+        }
       });
 
-      // Ensure seamless infinite loop
-      track.style.animationPlayState = 'running';
-      
-      // Add subtle hover effect to individual brand items
-      const brandItems = track.querySelectorAll('.brand-item');
-      brandItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          item.style.transform = 'translateY(-8px) scale(1.02)';
-          item.style.filter = 'brightness(1.05)';
-          item.style.transition = 'all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
-        });
+      // Touch events for mobile
+      track.addEventListener('touchstart', dragStart, { passive: false });
+      track.addEventListener('touchmove', dragMove, { passive: false });
+      track.addEventListener('touchend', dragEnd);
+
+      // Mouse events for desktop
+      track.addEventListener('mousedown', dragStart);
+      track.addEventListener('mousemove', dragMove);
+      track.addEventListener('mouseup', dragEnd);
+      track.addEventListener('mouseleave', (e) => {
+        if (isDragging) {
+          dragEnd(e);
+        } else {
+          isHovered = false;
+        }
+      });
+
+      function dragStart(e) {
+        isDragging = true;
+        isHovered = true;
+        hasMoved = false;
+        clickStartTime = Date.now();
+        track.style.cursor = 'grabbing';
         
-        item.addEventListener('mouseleave', () => {
-          item.style.transform = 'translateY(-8px) scale(1.02)';
-          item.style.filter = 'none';
-        });
-      });
-    });
+        startPos = getPositionX(e);
+        prevTranslate = currentTranslate;
+        
+        track.style.transition = 'none';
+        
+        // Prevent click events during drag preparation
+        e.preventDefault();
+      }
 
-    // Ensure animations start properly
-    setTimeout(() => {
-      carouselTracks.forEach(track => {
-        track.style.animationPlayState = 'running';
-      });
-    }, 100);
+      function dragMove(e) {
+        if (!isDragging) return;
+        
+        const currentPosition = getPositionX(e);
+        const diff = currentPosition - startPos;
+        
+        // Mark as moved if significant movement
+        if (Math.abs(diff) > 5) {
+          hasMoved = true;
+        }
+        
+        currentTranslate = prevTranslate + diff;
+        
+        // Handle infinite loop during drag with 4 sets
+        if (currentTranslate <= -totalWidth * 3.5) {
+          // Seamlessly jump from end of 4th set to middle of 2nd set
+          currentTranslate = -totalWidth * 1.5 + (currentTranslate + totalWidth * 3.5);
+          prevTranslate = currentTranslate - diff;
+          startPos = currentPosition; // Reset start position for smooth continuation
+        } else if (currentTranslate >= -totalWidth * 0.5) {
+          // Seamlessly jump from beginning of 1st set to middle of 3rd set
+          currentTranslate = -totalWidth * 2.5 + (currentTranslate + totalWidth * 0.5);
+          prevTranslate = currentTranslate - diff;
+          startPos = currentPosition; // Reset start position for smooth continuation
+        }
+        
+        track.style.transform = `translateX(${currentTranslate}px)`;
+        e.preventDefault();
+      }
+
+      function dragEnd(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        track.style.cursor = 'grab';
+        
+        // Add gentle momentum if dragged with speed
+        const dragTime = Date.now() - clickStartTime;
+        const currentPosition = getPositionX(e);
+        const dragDistance = currentPosition - startPos;
+        
+        if (hasMoved && dragTime < 300 && Math.abs(dragDistance) > 50) {
+          // Add reduced momentum for smoother, more elegant movement
+          const momentum = (dragDistance / dragTime) * 4; // Reduced momentum multiplier
+          currentTranslate += momentum;
+          
+          // Handle infinite loop after momentum with 4 sets
+          if (currentTranslate <= -totalWidth * 3.5) {
+            currentTranslate = -totalWidth * 1.5 + (currentTranslate + totalWidth * 3.5);
+          } else if (currentTranslate >= -totalWidth * 0.5) {
+            currentTranslate = -totalWidth * 2.5 + (currentTranslate + totalWidth * 0.5);
+          }
+        }
+        
+        // Ensure position stays within safe bounds for infinite loop
+        if (currentTranslate <= -totalWidth * 3) {
+          currentTranslate = -totalWidth;
+        } else if (currentTranslate >= -totalWidth) {
+          currentTranslate = -totalWidth * 3;
+        }
+        
+        // Smooth transition back to automatic movement
+        track.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)'; // More elegant easing
+        track.style.transform = `translateX(${currentTranslate}px)`;
+        
+        // Reset transition and allow automatic movement
+        setTimeout(() => {
+          track.style.transition = 'none';
+          isHovered = false;
+          prevTranslate = currentTranslate;
+        }, 500);
+      }
+
+      function getPositionX(e) {
+        return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      }
+      
+      // WhatsApp integration for all brand items (including clones)
+      function setupWhatsAppIntegration() {
+        const allBrandItems = track.querySelectorAll('.brand-item');
+        
+        allBrandItems.forEach(item => {
+          // Extract brand name from title
+          const brandTitle = item.querySelector('.brand-title');
+          const brandName = brandTitle ? brandTitle.textContent.trim() : 'esta marca';
+          
+          // Remove any existing event listeners
+          const newItem = item.cloneNode(true);
+          item.parentNode.replaceChild(newItem, item);
+          
+          // Add click handler for WhatsApp
+          newItem.addEventListener('click', (e) => {
+            // Only trigger if not dragging and didn't move
+            if (!isDragging && !hasMoved && isHovered) {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              const message = `Olá, vi que vocês trabalham com a marca ${brandName} e gostaria de saber mais sobre os serviços relacionados.`;
+              const encodedMessage = encodeURIComponent(message);
+              const whatsappUrl = `https://wa.me/5511999999999?text=${encodedMessage}`;
+              
+              window.open(whatsappUrl, '_blank');
+            }
+          });
+          
+          // Add hover effects
+          newItem.addEventListener('mouseenter', () => {
+            if (!isDragging) {
+              newItem.style.transform = 'translateY(-8px) scale(1.02)';
+              newItem.style.filter = 'brightness(1.05)';
+              newItem.style.transition = 'all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
+              newItem.style.cursor = 'pointer';
+            }
+          });
+          
+          newItem.addEventListener('mouseleave', () => {
+            newItem.style.transform = 'translateY(0) scale(1)';
+            newItem.style.filter = 'none';
+            newItem.style.cursor = 'grab';
+          });
+          
+          // Prevent drag on individual items
+          newItem.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+          });
+        });
+      }
+      
+      // Setup WhatsApp integration after cloning
+      setupWhatsAppIntegration();
+    });
   }
 
   window.addEventListener("load", initCarouselInfinite);

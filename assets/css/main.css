@@ -1162,42 +1162,28 @@ section,
   display: flex;
   width: max-content;
   gap: 30px;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
   user-select: none;
   will-change: transform;
-  cursor: default;
+  cursor: grab;
+  transition: none;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-.carousel-row:nth-child(1) .carousel-track {
-  animation: slide-right 120s linear infinite;
+.carousel-track:active {
+  cursor: grabbing;
 }
 
+/* Remove CSS animations as they're now handled by JavaScript */
+.carousel-row:nth-child(1) .carousel-track,
 .carousel-row:nth-child(2) .carousel-track {
-  animation: slide-left 120s linear infinite;
+  animation: none;
 }
 
-@keyframes slide-right {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(-33.333%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-/* Individual hover pause for each track */
-.carousel-track:hover {
-  animation-play-state: paused;
+/* Optimize rendering for smooth performance */
+.carousel-row {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* Brand cards */
@@ -1214,6 +1200,8 @@ section,
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 200px;
   min-width: 280px;
+  width: 280px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1221,6 +1209,11 @@ section,
   backdrop-filter: blur(10px);
   overflow: hidden;
   z-index: 1;
+  cursor: pointer;
+  touch-action: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .brand-item::before {
