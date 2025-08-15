@@ -857,6 +857,53 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
+# Media Query para smartphones grandes (iPhone Plus, Android grandes)
+--------------------------------------------------------------*/
+@media (min-width: 577px) and (max-width: 768px) {
+  /* Ajustes específicos para smartphones grandes */
+  .hero h2 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  
+  .hero p {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  .brand-item {
+    min-width: 260px;
+    height: 190px;
+    padding: 35px 30px;
+  }
+  
+  .brand-logo {
+    height: 75px;
+    margin-bottom: 18px;
+  }
+  
+  .brand-title {
+    font-size: 16px;
+  }
+  
+  .brand-description {
+    font-size: 13px;
+  }
+  
+  .section-title h2 {
+    font-size: 30px;
+  }
+  
+  .services .service-item {
+    padding: 50px 25px;
+  }
+  
+  .contact .php-email-form {
+    padding: 35px;
+  }
+}
+
+/*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
 .page-title {
@@ -1132,24 +1179,84 @@ section > * {
   .hero p {
     font-size: 18px;
     line-height: 24px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
   }
   
-  /* Adjust background patterns for mobile */
+  /* Garantir fundos visíveis no mobile */
+  .hero::before {
+    background: color-mix(in srgb, var(--background-color), transparent 20%) !important;
+  }
+  
+  /* Ajustar padrões de fundo para mobile - mantendo visibilidade */
   section::before,
-  .light-background::before,
-  .accent-background::before,
+  .primary-background::before,
+  .light-background::before {
+    background-size: 60px 60px, 90px 90px, 120px 120px !important;
+    opacity: 0.025 !important;
+  }
+  
+  .golden-background::before,
+  .accent-background::before {
+    background-size: 80px 60px, 100px 80px, 150px 90px !important;
+    opacity: 0.035 !important;
+  }
+  
+  .warm-neutral-background::before,
   .neutral-background::before {
-    background-size: 40px 40px, 60px 60px !important;
-    opacity: 0.015 !important;
+    background-size: 70px 70px, 90px 90px, 140px 80px !important;
+    opacity: 0.020 !important;
+  }
+  
+  .soft-accent-background::before {
+    background-size: 60px 40px, 80px 60px, 120px 75px !important;
+    opacity: 0.040 !important;
   }
   
   .clients.section::before {
-    background-size: 200px 150px, 180px 120px, 300px 200px !important;
+    background-size: 120px 90px, 140px 100px, 200px 120px !important;
+    opacity: 0.030 !important;
+  }
+  
+  /* Seções específicas com problemas de contraste */
+  .call-to-action::before {
+    background: color-mix(in srgb, var(--accent-color), transparent 15%) !important;
+  }
+  
+  .stats::before {
+    background: color-mix(in srgb, var(--accent-color), transparent 15%) !important;
+  }
+  
+  /* Melhorar contraste de texto no mobile */
+  .hero h2,
+  .call-to-action h3,
+  .stats .subheading h3 {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero p,
+  .call-to-action p,
+  .stats .subheading p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
   
   .section-divider {
     width: 90%;
     margin: 20px auto;
+  }
+  
+  /* Otimizar espaçamentos e elementos no mobile */
+  .section-title {
+    padding-bottom: 40px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  .section-title p {
+    font-size: 15px;
+    line-height: 1.6;
   }
 }
 
@@ -1740,16 +1847,33 @@ section > * {
 
   .carousel-row {
     margin-bottom: 30px;
+    /* Melhorar performance do carrossel no mobile */
+    -webkit-overflow-scrolling: touch;
+    overflow: visible;
   }
 
   .carousel-track {
     gap: 20px;
+    /* Otimizar para touch */
+    touch-action: pan-x;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .brand-item {
     padding: 30px 25px;
     height: 180px;
     min-width: 240px;
+    /* Melhorar responsividade touch */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  .brand-item:hover {
+    /* Reduzir efeitos hover no mobile para melhor performance */
+    transform: translateY(-4px) scale(1.01);
   }
 
   .brand-logo {
@@ -1768,6 +1892,12 @@ section > * {
   .carousel-row::before,
   .carousel-row::after {
     width: 80px;
+    /* Ajustar gradiente para mobile */
+    background: linear-gradient(90deg, #f7f4f0 0%, transparent 100%);
+  }
+  
+  .carousel-row::after {
+    background: linear-gradient(270deg, #f7f4f0 0%, transparent 100%);
   }
 }
 
@@ -1799,6 +1929,54 @@ section > * {
   .carousel-row::before,
   .carousel-row::after {
     width: 60px;
+  }
+  
+  /* Ajustes específicos para smartphones pequenos */
+  .hero {
+    padding: 60px 0;
+  }
+  
+  .hero h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  
+  .hero p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  /* Garantir espaçamentos adequados */
+  section,
+  .section {
+    padding: 50px 0;
+  }
+  
+  .section-title {
+    padding-bottom: 30px;
+  }
+  
+  .section-title h2 {
+    font-size: 24px;
+  }
+  
+  /* Otimizar formulário de contato */
+  .contact .php-email-form {
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+  .contact .info-item {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  /* Melhorar botões no mobile */
+  .header .cta-btn,
+  .about .read-more,
+  .call-to-action .cta-btn {
+    padding: 12px 20px;
+    font-size: 13px;
   }
 }
 

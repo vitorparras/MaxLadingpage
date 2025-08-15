@@ -349,12 +349,21 @@
         track.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)'; // More elegant easing
         track.style.transform = `translateX(${currentTranslate}px)`;
         
-        // Reset transition and allow automatic movement
+        // Reset transition and allow automatic movement - CORRIGIDO para mobile
         setTimeout(() => {
           track.style.transition = 'none';
+          // Garantir que a animação retome após interação touch no mobile
           isHovered = false;
           prevTranslate = currentTranslate;
+          hasMoved = false; // Reset para permitir cliques normais
         }, 500);
+        
+        // Para dispositivos touch, garantir que a animação retome
+        if ('ontouchstart' in window) {
+          setTimeout(() => {
+            isHovered = false;
+          }, 1000); // Delay adicional para touch devices
+        }
       }
 
       function getPositionX(e) {
