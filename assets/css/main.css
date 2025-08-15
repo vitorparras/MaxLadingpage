@@ -1164,21 +1164,17 @@ section,
   gap: 30px;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  cursor: grab;
   user-select: none;
   will-change: transform;
-}
-
-.carousel-track:active {
-  cursor: grabbing;
+  cursor: default;
 }
 
 .carousel-row:nth-child(1) .carousel-track {
-  animation: slide-right 180s linear infinite;
+  animation: slide-right 120s linear infinite;
 }
 
 .carousel-row:nth-child(2) .carousel-track {
-  animation: slide-left 180s linear infinite;
+  animation: slide-left 120s linear infinite;
 }
 
 @keyframes slide-right {
@@ -1202,16 +1198,6 @@ section,
 /* Individual hover pause for each track */
 .carousel-track:hover {
   animation-play-state: paused;
-}
-
-/* Smooth transitions for dragging */
-.carousel-track.dragging {
-  animation-play-state: paused;
-  transition: none;
-}
-
-.carousel-track:not(.dragging) {
-  transition: transform 0.3s ease-out;
 }
 
 /* Brand cards */

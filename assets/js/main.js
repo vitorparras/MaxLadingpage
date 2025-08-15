@@ -178,118 +178,46 @@
   window.addEventListener("load", initSwiper);
 
   /**
-   * Carousel drag functionality and infinite loop
+   * Carousel infinite loop with individual hover control
    */
-  function initCarouselDrag() {
-    const carouselContainer = document.querySelector('.brands-showcase');
+  function initCarouselInfinite() {
     const carouselTracks = document.querySelectorAll('.carousel-track');
     
-    if (!carouselContainer || !carouselTracks.length) return;
+    if (!carouselTracks.length) return;
 
-    // Pause on hover functionality
-    carouselContainer.addEventListener('mouseenter', () => {
-      carouselTracks.forEach(track => {
-        track.style.animationPlayState = 'paused';
-      });
-    });
-
-    carouselContainer.addEventListener('mouseleave', () => {
-      carouselTracks.forEach(track => {
-        if (!track.isDragging) {
-          track.style.animationPlayState = 'running';
-        }
-      });
-    });
-    
-    carouselTracks.forEach(track => {
-      let isDragging = false;
-      let startX = 0;
-      let currentTranslate = 0;
-      let prevTranslate = 0;
-      let animationId = null;
-      let currentIndex = 0;
+    carouselTracks.forEach((track, index) => {
+      // Remove drag functionality and focus on smooth infinite scroll
+      track.style.cursor = 'default';
       
-      track.isDragging = false;
-
-      // Mouse events
-      track.addEventListener('mousedown', startDrag);
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('mouseup', endDrag);
-
-      // Touch events
-      track.addEventListener('touchstart', startDrag, { passive: false });
-      track.addEventListener('touchmove', drag, { passive: false });
-      track.addEventListener('touchend', endDrag);
-
-      // Prevent context menu
-      track.addEventListener('contextmenu', e => e.preventDefault());
-
-      function startDrag(e) {
-        if (e.type === 'mousedown' && e.button !== 0) return;
-        
-        isDragging = true;
-        track.isDragging = true;
+      // Individual hover control for each track
+      track.addEventListener('mouseenter', () => {
         track.style.animationPlayState = 'paused';
-        track.style.cursor = 'grabbing';
-        
-        const clientX = getPositionX(e);
-        startX = clientX;
-        prevTranslate = getCurrentTranslate();
-        
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-        }
-        
-        e.preventDefault();
-      }
+      });
 
-      function drag(e) {
-        if (!isDragging) return;
-        
-        const currentPosition = getPositionX(e);
-        currentTranslate = prevTranslate + currentPosition - startX;
-        setSliderPosition();
-        
-        e.preventDefault();
-      }
+      track.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+      });
 
-      function endDrag() {
-        if (!isDragging) return;
+      // Ensure seamless infinite loop
+      track.style.animationPlayState = 'running';
+      
+      // Add subtle hover effect to individual brand items
+      const brandItems = track.querySelectorAll('.brand-item');
+      brandItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          item.style.transform = 'translateY(-8px) scale(1.02)';
+          item.style.filter = 'brightness(1.05)';
+          item.style.transition = 'all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
+        });
         
-        isDragging = false;
-        track.isDragging = false;
-        track.style.cursor = 'grab';
-        
-        // Resume animation after a short delay
-        setTimeout(() => {
-          if (!track.isDragging) {
-            track.style.animationPlayState = 'running';
-          }
-        }, 500);
-      }
-
-      function getPositionX(e) {
-        return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-      }
-
-      function getCurrentTranslate() {
-        const style = window.getComputedStyle(track);
-        const matrix = style.transform;
-        if (matrix === 'none') return 0;
-        
-        const matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ');
-        return parseFloat(matrixValues[4]) || 0;
-      }
-
-      function setSliderPosition() {
-        track.style.transform = `translateX(${currentTranslate}px)`;
-      }
-
-      // Set initial cursor
-      track.style.cursor = 'grab';
+        item.addEventListener('mouseleave', () => {
+          item.style.transform = 'translateY(-8px) scale(1.02)';
+          item.style.filter = 'none';
+        });
+      });
     });
 
-    // Fix infinite loop by ensuring proper animation setup
+    // Ensure animations start properly
     setTimeout(() => {
       carouselTracks.forEach(track => {
         track.style.animationPlayState = 'running';
@@ -297,7 +225,7 @@
     }, 100);
   }
 
-  window.addEventListener("load", initCarouselDrag);
+  window.addEventListener("load", initCarouselInfinite);
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
