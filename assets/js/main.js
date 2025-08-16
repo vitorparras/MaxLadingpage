@@ -242,14 +242,20 @@
       
       // Hover control - pause animation smoothly
       track.addEventListener('mouseenter', () => {
-        isHovered = true;
+        // Só pausar por hover em dispositivos não-touch
+        if (!('ontouchstart' in window)) {
+          isHovered = true;
+        }
       });
 
       track.addEventListener('mouseleave', () => {
-        if (!isDragging) {
+        if (!isDragging && !('ontouchstart' in window)) {
           isHovered = false;
         }
       });
+      
+      // Melhorar detecção de dispositivos touch
+      let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
       // Touch events for mobile
       track.addEventListener('touchstart', dragStart, { passive: false });
@@ -346,28 +352,41 @@
         }
         
         // Smooth transition back to automatic movement
-        track.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)'; // More elegant easing
+        track.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
         track.style.transform = `translateX(${currentTranslate}px)`;
         
-        // Reset transition and allow automatic movement - CORRIGIDO para mobile
+        // Reset transition and allow automatic movement
+        const resetTimeout = isTouchDevice ? 400 : 300;
         setTimeout(() => {
           track.style.transition = 'none';
-          // Garantir que a animação retome após interação touch no mobile
-          isHovered = false;
           prevTranslate = currentTranslate;
-          hasMoved = false; // Reset para permitir cliques normais
-        }, 500);
-        
-        // Para dispositivos touch, garantir que a animação retome
-        if ('ontouchstart' in window) {
-          setTimeout(() => {
-            isHovered = false;
-          }, 1000); // Delay adicional para touch devices
-        }
+          hasMoved = false;
+          
+          // Garantir retomada da animação automática imediatamente
+          isHovered = false;
+          
+          // Forçar retomada da animação
+          requestAnimationFrame(() => {
+            if (!isDragging) {
+              isHovered = false;
+            }
+          });
+        }, resetTimeout);
       }
 
       function getPositionX(e) {
-        return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+        if (e.type.includes('mouse')) {
+          return e.clientX;
+        }
+        // Para touch events, verificar se ainda existe touches
+        if (e.touches && e.touches.length > 0) {
+          return e.touches[0].clientX;
+        }
+        // Para touchend, usar changedTouches
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          return e.changedTouches[0].clientX;
+        }
+        return 0;
       }
       
       // WhatsApp integration for all brand items (including clones)

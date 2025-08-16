@@ -1179,64 +1179,93 @@ section > * {
   .hero p {
     font-size: 18px;
     line-height: 24px;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
   }
   
-  /* Garantir fundos visíveis no mobile */
-  .hero::before {
-    background: color-mix(in srgb, var(--background-color), transparent 20%) !important;
+  /* Preservar fundos ornamentais dourados que existem no desktop */
+  
+  /* Services Section - Fundo Dourado Suave preservado */
+  .services.section::before {
+    background-image: 
+      radial-gradient(ellipse at 25% 25%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+      radial-gradient(ellipse at 75% 75%, rgba(176, 141, 87, 0.015) 0%, transparent 60%),
+      linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.008) 50%, transparent 70%) !important;
+    background-size: 140px 90px, 170px 110px, 230px 140px !important;
+    opacity: 1 !important;
   }
   
-  /* Ajustar padrões de fundo para mobile - mantendo visibilidade */
-  section::before,
-  .primary-background::before,
-  .light-background::before {
-    background-size: 60px 60px, 90px 90px, 120px 120px !important;
-    opacity: 0.025 !important;
-  }
-  
-  .golden-background::before,
-  .accent-background::before {
-    background-size: 80px 60px, 100px 80px, 150px 90px !important;
-    opacity: 0.035 !important;
-  }
-  
-  .warm-neutral-background::before,
-  .neutral-background::before {
-    background-size: 70px 70px, 90px 90px, 140px 80px !important;
-    opacity: 0.020 !important;
-  }
-  
-  .soft-accent-background::before {
-    background-size: 60px 40px, 80px 60px, 120px 75px !important;
-    opacity: 0.040 !important;
-  }
-  
+  /* Clients Section - Fundo Acentuado Suave preservado */
   .clients.section::before {
-    background-size: 120px 90px, 140px 100px, 200px 120px !important;
-    opacity: 0.030 !important;
+    background-image: 
+      radial-gradient(ellipse at 30% 40%, rgba(176, 141, 87, 0.025) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(176, 141, 87, 0.018) 0%, transparent 45%),
+      linear-gradient(135deg, transparent 35%, rgba(176, 141, 87, 0.010) 50%, transparent 65%) !important;
+    background-size: 100px 70px, 130px 90px, 180px 110px !important;
+    opacity: 1 !important;
   }
   
-  /* Seções específicas com problemas de contraste */
-  .call-to-action::before {
-    background: color-mix(in srgb, var(--accent-color), transparent 15%) !important;
+  /* FAQ Section - Fundo Dourado Suave preservado */
+  .faq.section::before {
+    background-image: 
+      radial-gradient(ellipse at 25% 25%, rgba(176, 141, 87, 0.020) 0%, transparent 70%),
+      radial-gradient(ellipse at 75% 75%, rgba(176, 141, 87, 0.015) 0%, transparent 60%),
+      linear-gradient(120deg, transparent 30%, rgba(176, 141, 87, 0.008) 50%, transparent 70%) !important;
+    background-size: 140px 90px, 170px 110px, 230px 140px !important;
+    opacity: 1 !important;
   }
   
-  .stats::before {
-    background: color-mix(in srgb, var(--accent-color), transparent 15%) !important;
+  /* Features Section - Fundo Neutro Caloroso preservado */
+  .features.section::before {
+    background-image: 
+      radial-gradient(circle at 40% 20%, rgba(176, 141, 87, 0.012) 0%, transparent 65%),
+      radial-gradient(circle at 60% 80%, rgba(176, 141, 87, 0.010) 0%, transparent 55%),
+      linear-gradient(60deg, transparent 40%, rgba(176, 141, 87, 0.005) 55%, transparent 70%) !important;
+    background-size: 120px 120px, 150px 150px, 210px 120px !important;
+    opacity: 1 !important;
   }
   
-  /* Melhorar contraste de texto no mobile */
+  /* Contact Section - Fundo Neutro Caloroso preservado */
+  .contact.section::before {
+    background-image: 
+      radial-gradient(circle at 40% 20%, rgba(176, 141, 87, 0.012) 0%, transparent 65%),
+      radial-gradient(circle at 60% 80%, rgba(176, 141, 87, 0.010) 0%, transparent 55%),
+      linear-gradient(60deg, transparent 40%, rgba(176, 141, 87, 0.005) 55%, transparent 70%) !important;
+    background-size: 120px 120px, 150px 150px, 210px 120px !important;
+    opacity: 1 !important;
+  }
+  
+  /* About e Portfolio - Fundo Principal Branco com ornamentação sutil preservada */
+  .about.section::before,
+  .portfolio.section::before {
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(176, 141, 87, 0.008) 1px, transparent 1px),
+      radial-gradient(circle at 80% 70%, rgba(176, 141, 87, 0.006) 1px, transparent 1px),
+      linear-gradient(45deg, transparent 48%, rgba(176, 141, 87, 0.003) 50%, transparent 52%) !important;
+    background-size: 70px 70px, 110px 110px, 150px 150px !important;
+    opacity: 1 !important;
+  }
+  
+  /* Manter apenas sombras de texto necessárias para legibilidade em seções com imagem de fundo */
   .hero h2,
   .call-to-action h3,
   .stats .subheading h3 {
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 0, 0, 0.5);
+    color: #ffffff !important;
+    font-weight: 700 !important;
   }
   
   .hero p,
   .call-to-action p,
   .stats .subheading p {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 0, 0, 0.4);
+    color: #ffffff !important;
+    font-weight: 500 !important;
+  }
+  
+  .stats .stats-item span,
+  .stats .stats-item p {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 0, 0, 0.5) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
   }
   
   .section-divider {
@@ -1847,33 +1876,43 @@ section > * {
 
   .carousel-row {
     margin-bottom: 30px;
-    /* Melhorar performance do carrossel no mobile */
-    -webkit-overflow-scrolling: touch;
     overflow: visible;
+    /* Otimizar para interação touch */
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
   }
 
   .carousel-track {
     gap: 20px;
-    /* Otimizar para touch */
+    /* Melhorar suporte touch sem bloquear pan-x */
     touch-action: pan-x;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /* Otimização para rendering no mobile */
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .brand-item {
     padding: 30px 25px;
     height: 180px;
     min-width: 240px;
-    /* Melhorar responsividade touch */
+    /* Otimizar rendering para touch */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Melhorar responsividade ao toque */
+    transition: transform 0.2s ease;
   }
   
-  .brand-item:hover {
-    /* Reduzir efeitos hover no mobile para melhor performance */
-    transform: translateY(-4px) scale(1.01);
+  /* Efeitos hover adaptados para touch */
+  .brand-item:hover,
+  .brand-item:active {
+    transform: translateY(-2px) scale(1.005) translateZ(0);
   }
 
   .brand-logo {
@@ -1891,13 +1930,13 @@ section > * {
 
   .carousel-row::before,
   .carousel-row::after {
-    width: 80px;
+    width: 60px;
     /* Ajustar gradiente para mobile */
-    background: linear-gradient(90deg, #f7f4f0 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(247, 244, 240, 0.95) 0%, rgba(247, 244, 240, 0.8) 60%, transparent 100%);
   }
   
   .carousel-row::after {
-    background: linear-gradient(270deg, #f7f4f0 0%, transparent 100%);
+    background: linear-gradient(270deg, rgba(247, 244, 240, 0.95) 0%, rgba(247, 244, 240, 0.8) 60%, transparent 100%);
   }
 }
 
